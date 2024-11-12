@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'dj_rest_auth.registration',
     'corsheaders',
+    
 
 
 
@@ -65,7 +66,7 @@ INSTALLED_APPS = [
 
 
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
