@@ -54,12 +54,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'cloudinary',
     'rest_framework',
-    'dj_rest_auth.registration',
     'corsheaders',
-    
-
-
-
+    'rest_framework.authtoken', 
+    'dj_rest_auth',
+    'django.contrib.sites', 
+    'allauth', 
+    'allauth.account', 
+    'allauth.socialaccount', 
+    'dj_rest_auth.registration',
+    'allauth.socialaccount.providers.google',
     'profiles',
     'posts',
     'comments',
@@ -67,6 +70,15 @@ INSTALLED_APPS = [
 
 ]
 SITE_ID = 1
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [( 
+        'rest_framework.authentication.SessionAuthentication' 
+        if 'DEV' in os.environ 
+        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+    )]
+}
+
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -74,9 +86,17 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    'allauth.account.middleware.AuthenticationMiddleware',
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 
 if 'CLIENT_ORIGIN' in os.environ:
     CORS_ALLOWED_ORIGINS = [
@@ -86,6 +106,13 @@ else:
     CORS_ALLOWED_ORIGIN_REGEXES = [
         r"^https://.*\.visualstudio\.io$",
     ]
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_SECURE = True
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
+
+REST_AUTH_SERIALIZERS = {'USER_DETAILS_SERIALIZER': 'gym_share.serializers.CurrentUserSerializer'}
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -167,6 +194,3 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-JWT_AUTH_COOKIE = 'my-app-auth'
-JWT_AUTH_REFRESH_COOKE = 'my-refresh-token'
-JWT_AUTH_SAMESITE = 'None'
