@@ -79,6 +79,7 @@ REST_FRAMEWORK = {
         if 'DEV' in os.environ 
         else 'rest_framework_simplejwt.authentication.JWTAuthentication'
     ]
+    
 }
 
 MIDDLEWARE = [

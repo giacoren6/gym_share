@@ -1,4 +1,5 @@
 from rest_framework import generics, permissions
+from rest_framework.response import Response
 from gym_share.permissions import IsOwnerOrReadOnly
 from .models import Comment
 from .serializers import CommentSerializer, CommentDetailSerializer
@@ -15,6 +16,7 @@ class CommentList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
     
+   
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     update or delete a comment instance
