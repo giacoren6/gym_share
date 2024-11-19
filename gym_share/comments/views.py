@@ -14,7 +14,7 @@ class CommentList(generics.ListCreateAPIView):
     
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-
+    
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     update or delete a comment instance
