@@ -44,8 +44,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['https://dashboard.heroku.com/apps/gym-share']
-#ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['https://dashboard.heroku.com/apps/gym-share']
+ALLOWED_HOSTS = ['*']
 #ALLOWED_HOSTS = ['gym-share-9a40a7748e0a.herokuapp.com']
 
 # Application definition
