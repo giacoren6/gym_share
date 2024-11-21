@@ -42,8 +42,9 @@ SECRET_KEY = 'Tekken'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['heroku.com', 'https://dashboard.heroku.com/apps/gym-share']
+#ALLOWED_HOSTS = ['heroku.com', 'https://dashboard.heroku.com/apps/gym-share']
 #ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['gym_share.herokuapp.com']
 
 # Application definition
 
