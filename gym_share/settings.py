@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
-"""
+
 import os
 from pathlib import Path
 import dj_database_url
@@ -210,6 +210,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 django_heroku.settings(locals())
 
+"""
 
 
 
@@ -217,14 +218,10 @@ django_heroku.settings(locals())
 
 
 
-
-
-
-
-"""""
 import dj_database_url
 import os
 import django_heroku
+from pathlib import Path
 
 # Load environment variables from env.py if it exists
 if os.path.exists('env.py'):
@@ -237,9 +234,8 @@ CLOUDINARY_STORAGE = {
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-                                           
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -250,7 +246,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['heroku.com', 'gym-share-9a40a7748e0a.herokuapp.com']
+ALLOWED_HOSTS = ['gym-share-9a40a7748e0a.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -259,19 +255,36 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles",
-    'comments',
-    'posts',
-    'profiles',
-    'gym_share',  # Replace 'your_app' with the name of your app
-    'dj_rest_auth',
-    'rest_framework',
-    'rest_framework_simplejwt',
     'cloudinary_storage',
+    "django.contrib.staticfiles",
     'cloudinary',
-    'django_cors_headers',
-    'django_allauth',
+    'rest_framework',
+    'corsheaders',
+    'rest_framework.authtoken', 
+    'dj_rest_auth',
+    'django.contrib.sites', 
+    'allauth', 
+    'allauth.account', 
+    'allauth.socialaccount', 
+    'dj_rest_auth.registration',
+    'allauth.socialaccount.providers.google',
+    'profiles',
+    'posts',
+    'comments',
 ]
+
+SITE_ID = 1
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication' 
+        if 'DEV' in os.environ 
+        else 'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DATETIME_FORMAT': '%Y-%m-%d',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -344,7 +357,10 @@ STATICFILES_DIRS = (
 django_heroku.settings(locals())
 
 
-"""
+
+
+
+
 
 
 
