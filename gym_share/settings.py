@@ -160,8 +160,7 @@ WSGI_APPLICATION = "gym_share.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-import dj_database_url
-import os
+
 
 DATABASES = {
     'default': {
