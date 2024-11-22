@@ -161,7 +161,6 @@ WSGI_APPLICATION = "gym_share.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -171,7 +170,6 @@ DATABASES = {
 
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
-
 
 
 """""
