@@ -162,7 +162,7 @@ WSGI_APPLICATION = "gym_share.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
+"""""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -172,23 +172,27 @@ DATABASES = {
 
 if 'DATABASE_URL' in os.environ:
     DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
-
-
 """
-#import dj_database_url
 
-#if 'DATABASE_URL' in os.environ:
-    #DATABASES = {
-        #'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    ##}
-#DATABASES = {
-    #'default': {
-      #  'ENGINE': 'django.db.backends.sqlite3',
-      #  'NAME': BASE_DIR / 'db.sqlite3',
-   # }
-#}
 
-"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+            'options': '-c search_path=public',
+            'options': os.environ.get('DATABASE_ENDPOINT'),
+        },
+    }
+}
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -233,6 +237,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 django_heroku.settings(locals())
+
+print("DATABASES configuration:", DATABASES)
 
 
 
