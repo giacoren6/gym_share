@@ -8,20 +8,34 @@ class Post(models.Model):
     Default image set so that we can always reference image.url.
     """
     image_filter_choices = [
-        ('_1977', '1977'),
+
+        ('normal', 'Normal'),
+        ('clarendon', 'Clarendon'),
+        ('gingham', 'Gingham'),
+        ('moon', 'Moon'),
+        ('lark', 'Lark'),
+        ('reyes', 'Reyes'),
+        ('juno', 'Juno'),
+        ('slumber', 'Slumber'),
+        ('aden', 'Aden'),
+        ('perpetua', 'Perpetua'),
+        ('mayfair', 'Mayfair'),
+        ('rise', 'Rise'),
+        ('hudson', 'Hudson'),
+        ('valencia', 'Valencia'),
+        ('xpro2', 'X-Pro II'),
+        ('willow', 'Willow'),
+        ('lofi', 'Lo-Fi'),
+        ('inkwell', 'Inkwell'),
+        ('nashville', 'Nashville'),
+        ('amaro', 'Amaro'),
         ('brannan', 'Brannan'),
         ('earlybird', 'Earlybird'),
-        ('hudson', 'Hudson'),
-        ('inkwell', 'Inkwell'),
-        ('lofi', 'Lo-Fi'),
-        ('kelvin', 'Kelvin'),
-        ('normal', 'Normal'),
-        ('nashville', 'Nashville'),
-        ('rise', 'Rise'),
+        ('sutro', 'Sutro'),
         ('toaster', 'Toaster'),
-        ('valencia', 'Valencia'),
         ('walden', 'Walden'),
-        ('xpro2', 'X-pro II')
+        ('1977', '1977'),
+        ('kelvin', 'Kelvin'),
     ]
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
