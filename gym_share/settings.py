@@ -18,7 +18,8 @@ import django_heroku
 
 # Load environment variables from env.py if it exists
 if os.path.exists('env.py'):
-    import env
+    exec(open('env.py').read())
+
 
 CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
@@ -36,7 +37,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-SECRET_KEY = os.environ.get
+SECRET_KEY = os.environ.get('SECRET_KEY', 'Tekken')
 
 
 #SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -232,6 +233,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 django_heroku.settings(locals())
+
+
+
 
 
 
