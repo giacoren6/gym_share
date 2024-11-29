@@ -101,6 +101,7 @@ if 'DEV' in os.environ:
     ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -110,7 +111,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -120,9 +120,7 @@ AUTHENTICATION_BACKENDS = [
 CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'https://gym-share-react-e6ad1d0b8160.herokuapp.com',
-
 ]
-
 # JWT settings
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth'
