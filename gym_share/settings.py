@@ -119,9 +119,9 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # CORS settings
-CORS_ALLOWED_ORIOGINS = [
+CORS_ALLOWED_ORIGINS = [
     'https://gym-share-react-e6ad1d0b8160.herokuapp.com',
-    'http://127.0.0.1:3000',
+    'http://localhost:3000',
 
 ]
 
