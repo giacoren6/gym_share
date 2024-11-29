@@ -119,14 +119,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # CORS settings
-if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-    ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.visualstudio\.io$",
-    ]
+CORS_ALLOWED_ORIOGINS = [
+    'https://gym-share-react-e6ad1d0b8160.herokuapp.com',
+    'http://127.0.0.1:3000',
+
+]
 
 # JWT settings
 REST_USE_JWT = True
