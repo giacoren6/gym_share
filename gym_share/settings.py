@@ -45,11 +45,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'Tekken')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = 'DEV' in os.environ
-#DEBUG = True
+# DEBUG = 'DEV' in os.environ
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['gym-share-9a40a7748e0a.herokuapp.com']
+ALLOWED_HOSTS = ['gym-share-9a40a7748e0a.herokuapp.com', '8000-giacoren6-gymshare-07sjsqvcbot.ws-eu117.gitpod.io']
 #ALLOWED_HOSTS = ['*']
 
 
@@ -65,15 +65,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'cloudinary',
     'rest_framework',
-    'corsheaders',
     'rest_framework.authtoken', 
     'dj_rest_auth',
     'django.contrib.sites', 
     'allauth', 
     'allauth.account', 
     'allauth.socialaccount', 
-    'dj_rest_auth.registration',
     'allauth.socialaccount.providers.google',
+    'dj_rest_auth.registration',
+    'corsheaders',
     'profiles',
     'posts',
     'comments',
@@ -117,10 +117,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:3000',
-    'https://gym-share-react-e6ad1d0b8160.herokuapp.com',
-]
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN'),
+        os.environ.get('CLIENT_ORIGIN_DEV')
+    ]
 # JWT settings
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth'
@@ -215,6 +216,8 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -231,7 +234,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 
-print("DATABASES configuration:", DATABASES)
+# print("DATABASES configuration:", DATABASES)
 
 
 
