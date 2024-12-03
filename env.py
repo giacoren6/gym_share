@@ -12,3 +12,6 @@ os.environ['DATABASE_HOST'] = 'ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.a
 os.environ['DATABASE_ENDPOINT'] = 'endpoint=ep-gentle-mountain-a23bxz6h-pooler'
 os.environ['DATABASE_USER'] = 'ueb2xhhf7ly'
 os.environ['DATABASE_PASSWORD'] = 'BUA5ir5VX0Ke'
+
+os.environ['EMAIL_HOST_USER'] = 'giacoren6@gmail.com'
+os.environ['EMAIL_HOST_PASSWORD'] = 'Tekken98'
