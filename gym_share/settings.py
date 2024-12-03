@@ -117,10 +117,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:3000',
-    'https://gym-share-react-e6ad1d0b8160.herokuapp.com',
-]
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN'),
+        os.environ.get('CLIENT_ORIGIN_DEV')
+    ]
 # JWT settings
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = 'my-app-auth'
